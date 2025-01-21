@@ -1,23 +1,24 @@
-
+import FeedbackData from "./data/FeedbackData.js";
+import Header from "./components/Header.jsx";
+import {useState} from "react";
+import FeedbackList from "./components/FeedbackList.jsx";
 
 
 function App() {
 
-const feedback = [
-  {id: 1, rating: 1, text: "Text 1"},
-  {id: 2, rating: 1, text: "Text 2"},
-  {id: 3, rating: 1, text: "Text 3"}
-]
+const [feedbacks, setFeedback] = useState(FeedbackData)
+
+
 
   return (
-    <div>
-      Привіт, Всесвіте!
-      <p>
-{JSON.stringify(feedback)}
+      <>
+          <Header />
+          <FeedbackList feedbacks={feedbacks} />
 
-      </p>
-    </div>
+      </>
   )
 }
+
+
 
 export default App
