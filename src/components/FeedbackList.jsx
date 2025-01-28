@@ -1,3 +1,4 @@
+import FeedbackItem from "./FeedbackItem.jsx";
 
 const FeedbackList = ({feedbacks}) => {
 
@@ -7,7 +8,7 @@ const FeedbackList = ({feedbacks}) => {
 
     return (
         <div className={'feedback-list'}>
-            {JSON.stringify(feedbacks, null, 2)}
+            {feedbacks.map(item=>(<FeedbackItem key={item.id} feedback={item}/>))}
         </div>
     );
 };

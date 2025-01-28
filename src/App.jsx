@@ -13,7 +13,10 @@ const [feedbacks, setFeedback] = useState(FeedbackData)
   return (
       <>
           <Header />
-          <FeedbackList feedbacks={feedbacks} />
+          <div className="container">
+              <FeedbackList feedbacks={feedbacks} />
+          </div>
+
 
       </>
   )
