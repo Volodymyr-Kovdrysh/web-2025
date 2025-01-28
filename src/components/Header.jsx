@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 
-const Header = ({text, bgColor, textColor}) => {
+const Header = ({
+                    text='Опитувальник UI',
+                    bgColor='rgba(0,0,0,0.4)',
+                    textColor = '#ff6095'}) => {
     const headerStyle = {
         backgroundColor: bgColor,
         color: textColor,
@@ -13,12 +16,6 @@ const Header = ({text, bgColor, textColor}) => {
         </header>
     );
 };
-
-Header.defaultProps = {
-    text: 'Опитувальник UI',
-    bgColor: 'rgba(0,0,0,0.4)',
-    textColor: '#ff6095',
-}
 
 Header.propTypes = {
     text: PropTypes.string,
