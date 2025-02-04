@@ -1,23 +1,62 @@
 
 import Card from "../shared/Card.jsx";
+import Button from "../shared/Button.jsx";
+import {useState} from "react";
+import RatingSelect from "./RatingSelect.jsx";
 
-const FeedbackForm = () => {
+
+const FeedbackForm = ({handleAdd}) => {
+    const [text, setText] = useState('');
+    const [btnDisabled, setBtnDisabled] = useState(true);
+    const [message, setMessage] = useState(null);
+
+    const handleTextChange = (e) => {
+
+
+
+        if (text === ''){
+            setBtnDisabled(true)
+            setMessage(null);
+        } else if (text !== '' && text.trim().length < 9){
+            setMessage('Текст повинен містити щонайменше 10 символів')
+            setBtnDisabled(true)
+        }else {
+            setMessage(null)
+            setBtnDisabled(false)
+        }
+
+        setText(e.target.value);
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log('form submitted');
+        if (text.trim().length >0){
+            const newFeedback = {
+                rating: 7,
+                text: text.trim(),
+            }
+            handleAdd(newFeedback);
+            setText('')
+
+        }
+
+
     }
     return (
         <Card>
             <form onSubmit={handleSubmit}>
                 <h2>Дайте оцінку нашому курсу</h2>
-
+                <RatingSelect />
                 <div className="input-group">
-                    <input/>
-                    <button type={'submit'}>НАДІСЛАТИ</button>
+                    <input
+                        onChange={handleTextChange}
+                        type={"text"}
+                        value={text}
+                    />
+                    <Button type={'submit'} isDisable={btnDisabled}>Надіслати</Button>
                 </div>
-
+                {message && <div className="message">{message}</div>}
             </form>
         </Card>
     );
