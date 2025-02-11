@@ -7,6 +7,7 @@ import RatingSelect from "./RatingSelect.jsx";
 
 const FeedbackForm = ({handleAdd}) => {
     const [text, setText] = useState('');
+    const [rating, setRating] = useState(5);
     const [btnDisabled, setBtnDisabled] = useState(true);
     const [message, setMessage] = useState(null);
 
@@ -33,7 +34,7 @@ const FeedbackForm = ({handleAdd}) => {
 
         if (text.trim().length >0){
             const newFeedback = {
-                rating: 7,
+                rating,
                 text: text.trim(),
             }
             handleAdd(newFeedback);
@@ -47,7 +48,7 @@ const FeedbackForm = ({handleAdd}) => {
         <Card>
             <form onSubmit={handleSubmit}>
                 <h2>Дайте оцінку нашому курсу</h2>
-                <RatingSelect />
+                <RatingSelect select={setRating} />
                 <div className="input-group">
                     <input
                         onChange={handleTextChange}

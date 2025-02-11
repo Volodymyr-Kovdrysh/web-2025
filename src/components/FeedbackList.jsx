@@ -1,4 +1,6 @@
+import {motion} from "framer-motion"
 import FeedbackItem from "./FeedbackItem.jsx";
+
 
 const FeedbackList = ({feedbacks, deleteFeedback}) => {
 
@@ -8,9 +10,20 @@ const FeedbackList = ({feedbacks, deleteFeedback}) => {
 
     return (
         <div className={'feedback-list'}>
-            {feedbacks.map(item=>(<FeedbackItem key={item.id}
-                                                feedback={item}
-                                                deleteFeedback={deleteFeedback} />))}
+            {feedbacks.map(item=>(
+                <motion.div
+                    key={item.id}
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    exit={{opacity: 0}}
+                >
+
+                    <FeedbackItem
+                    feedback={item}
+                    deleteFeedback={deleteFeedback} />
+
+                </motion.div>
+                    ))}
         </div>
     );
 };

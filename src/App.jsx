@@ -6,6 +6,7 @@ import FeedbackStat from "./components/FeedbackStat.jsx";
 import FeedbackForm from "./components/FeedbackForm.jsx";
 
 import { v4 as uuidv4 } from 'uuid';
+import AboutIconLink from "./components/AboutIconLink.jsx";
 
 
 function App() {
@@ -31,6 +32,8 @@ const deleteFeedback = (id) => {
               <FeedbackForm handleAdd={addFeedback}/>
               <FeedbackStat feedbacks={feedbacks} />
               <FeedbackList feedbacks={feedbacks} deleteFeedback={deleteFeedback} />
+
+              <AboutIconLink />
           </div>
 
 
