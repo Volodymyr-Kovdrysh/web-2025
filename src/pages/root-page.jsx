@@ -1,5 +1,5 @@
 import Card from "../shared/Card.jsx";
-import {Outlet, NavLink} from "react-router-dom";
+import {Outlet, NavLink} from "react-router";
 
 const RootPage = () => {
     return (
