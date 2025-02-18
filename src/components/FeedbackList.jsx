@@ -1,8 +1,12 @@
 import {motion} from "framer-motion"
 import FeedbackItem from "./FeedbackItem.jsx";
+import {useContext} from "react";
+import FeedbackContext from "../context/FeedbackContext.jsx";
 
 
-const FeedbackList = ({feedbacks, deleteFeedback}) => {
+const FeedbackList = () => {
+
+    const {feedbacks} = useContext(FeedbackContext)
 
     if (!feedbacks || feedbacks.length === 0) {
         return <p>Ще немає відгуків</p>
@@ -20,7 +24,7 @@ const FeedbackList = ({feedbacks, deleteFeedback}) => {
 
                     <FeedbackItem
                     feedback={item}
-                    deleteFeedback={deleteFeedback} />
+                     />
 
                 </motion.div>
                     ))}
