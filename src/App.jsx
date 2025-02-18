@@ -1,12 +1,13 @@
 import FeedbackData from "./data/FeedbackData.js";
 import Header from "./components/Header.jsx";
-import {useState} from "react";
+import { useState} from "react";
 import FeedbackList from "./components/FeedbackList.jsx";
 import FeedbackStat from "./components/FeedbackStat.jsx";
 import FeedbackForm from "./components/FeedbackForm.jsx";
 
 import { v4 as uuidv4 } from 'uuid';
 import AboutIconLink from "./components/AboutIconLink.jsx";
+import {FeedbackProvider} from "./context/FeedbackContext.jsx";
 
 
 function App() {
@@ -26,18 +27,21 @@ const deleteFeedback = (id) => {
 }
 
   return (
-      <>
+      <FeedbackProvider>
           <Header />
           <div className="container">
               <FeedbackForm handleAdd={addFeedback}/>
               <FeedbackStat feedbacks={feedbacks} />
-              <FeedbackList feedbacks={feedbacks} deleteFeedback={deleteFeedback} />
+              <FeedbackList
+                  feedbacks={feedbacks}
+                  deleteFeedback={deleteFeedback}
+              />
 
               <AboutIconLink />
           </div>
 
 
-      </>
+      </FeedbackProvider>
   )
 }
 
