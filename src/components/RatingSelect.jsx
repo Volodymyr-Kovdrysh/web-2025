@@ -23,7 +23,7 @@ const RatingSelect = ({select}) => {
     const [selected, setSelected] = useState(5)
 
     useEffect(() => {
-        setSelected(+feedbackEdit.item.rating)
+         setSelected(+feedbackEdit.item.rating)
     }, [feedbackEdit]);
 
     const handleChange = (e) =>{

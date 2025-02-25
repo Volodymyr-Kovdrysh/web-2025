@@ -1,0 +1,41 @@
+{
+  "theme": [
+    {
+      "id": 1,
+      "theme": "dark"
+    },
+    {
+      "id": 2,
+      "theme": "light"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "user_name": "Admin",
+      "isLogin": true
+    }
+  ],
+  "feedbacks": [
+    {
+      "id": 1,
+      "rating": "10",
+      "text": "Comment from backend 1"
+    },
+    {
+      "id": 2,
+      "rating": 9,
+      "text": "Comment from backend 2"
+    },
+    {
+      "id": 3,
+      "rating": 8,
+      "text": "Comment from backend 3"
+    },
+    {
+      "rating": 10,
+      "text": "Відгук з додатку!",
+      "id": "3b3c"
+    }
+  ]
+}
