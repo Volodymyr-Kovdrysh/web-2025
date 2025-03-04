@@ -1,9 +1,11 @@
 import {createContext, useEffect, useState} from "react";
+import getDataFromGoogleAppScripts from "../data/Utils.js";
 
 
 
 const FeedbackContext = createContext()
 
+const googleUrl = import.meta.env.VITE_apiURL
 
 export const FeedbackProvider = ({ children }) => {
 
@@ -16,15 +18,21 @@ export const FeedbackProvider = ({ children }) => {
 
     useEffect(() => {
         fetchFeedback()
-        fetchTheme()
+        // fetchTheme()
     },[])
 
     const fetchFeedback = async () => {
-        const response = await fetch('http://localhost:3000/feedbacks')
-        const data = await response.json();
-        console.log(data)
-        setFeedbacks(data)
-        setIsLoading(false)
+        // const response = await fetch('http://localhost:3000/feedbacks')
+        // const data = await response.json();
+        // console.log(data)
+        // setFeedbacks(data)
+        // setIsLoading(false)
+        getDataFromGoogleAppScripts(googleUrl).then(data => {
+            console.log('Data from GoogleApp', data)
+            setFeedbacks(data.feedbacks)
+            setIsLoading(false)
+            }
+        )
     }
 
     const fetchTheme = async () => {
