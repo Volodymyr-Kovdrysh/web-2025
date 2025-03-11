@@ -1,6 +1,6 @@
 import {createContext, useEffect, useState} from "react";
 import getDataFromGoogleAppScripts from "../data/Utils.js";
-
+import {v4 as uuidv4} from "uuid";
 
 
 const FeedbackContext = createContext()
@@ -22,12 +22,8 @@ export const FeedbackProvider = ({ children }) => {
     },[])
 
     const fetchFeedback = async () => {
-        // const response = await fetch('http://localhost:3000/feedbacks')
-        // const data = await response.json();
-        // console.log(data)
-        // setFeedbacks(data)
-        // setIsLoading(false)
-        getDataFromGoogleAppScripts(googleUrl).then(data => {
+
+        getDataFromGoogleAppScripts(`${googleUrl}?method=GET`).then(data => {
             console.log('Data from GoogleApp', data)
             setFeedbacks(data.feedbacks)
             setIsLoading(false)
@@ -45,50 +41,52 @@ export const FeedbackProvider = ({ children }) => {
 
 
     const addFeedback = async (newFeedback) => {
-        const response = await fetch('http://localhost:3000/feedbacks', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newFeedback)
+
+
+        newFeedback.id = uuidv4()
+        setIsLoading(true)
+        getDataFromGoogleAppScripts(`${googleUrl}?method=POST&id=${newFeedback.id}&rating=${newFeedback.rating}&text=${newFeedback.text}`).then(data => {
+            setFeedbacks(data.feedbacks)
+            setIsLoading(false)
         })
-
-        const data = await response.json();
-
-        // newFeedback.id = uuidv4()
-         setFeedbacks([data, ...feedbacks])
     }
 
     const deleteFeedback = async (id) => {
         if(window.confirm("Ви впевнені, що хочете зробити це ??")){
-
-            const response = await fetch(`http://localhost:3000/feedbacks/${id}`, {
-                method: 'DELETE',
+            setIsLoading(true)
+            getDataFromGoogleAppScripts(`${googleUrl}?method=DELETE&id=${id}`).then(data => {
+                setFeedbacks(data.feedbacks)
+                setIsLoading(false)
             })
-            const data = await response.json();
 
-            console.log('DELETE', data)
-            setFeedbacks(feedbacks.filter(feedback => feedback.id !== id))
+
+
         }
 
     }
 
     const updateFeedback = async (id, updItem) => {
-        const response = await fetch(`http://localhost:3000/feedbacks/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updItem)
+        setIsLoading(true)
+        getDataFromGoogleAppScripts(`${googleUrl}?method=PUT&id=${id}&rating=${updItem.rating}&text=${updItem.text}`).then(data => {
+            setFeedbacks(data.feedbacks)
+            setIsLoading(false)
         })
-        const data = await response.json();
-        console.log('UPDATE', data)
 
-        setFeedbacks(feedbacks.map(item => item.id === id ? {...item, ...updItem} : item))
-        setFeedbackEdit({
-            item: {},
-            edit: false,
-        })
+        // const response = await fetch(`http://localhost:3000/feedbacks/${id}`, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(updItem)
+        // })
+        // const data = await response.json();
+        // console.log('UPDATE', data)
+        //
+        // setFeedbacks(feedbacks.map(item => item.id === id ? {...item, ...updItem} : item))
+        // setFeedbackEdit({
+        //     item: {},
+        //     edit: false,
+        // })
     }
 
     const editFeedback = (item) => {
