@@ -1,6 +1,10 @@
+import {useContext} from "react";
+import FeedbackContext from "../context/FeedbackContext.jsx";
 
 
-const FeedbackStat = ({feedbacks}) => {
+const FeedbackStat = () => {
+
+    const {feedbacks} = useContext(FeedbackContext)
 
     let msgcount;
     if (feedbacks.length === 1) { msgcount = 'відгук'}
