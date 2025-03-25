@@ -8,7 +8,7 @@ const FeedbackContext = createContext()
 const googleUrl = import.meta.env.VITE_apiURL
 
 export const FeedbackProvider = ({ children }) => {
-
+    const [user, setUser] = useState({login: true});
     const [feedbacks, setFeedbacks] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [feedbackEdit, setFeedbackEdit] = useState({
@@ -94,6 +94,19 @@ export const FeedbackProvider = ({ children }) => {
         setFeedbackEdit({item, edit: true})
     }
 
+    const login = () => {
+        setUser(prevState => ({...prevState, login: true}))
+    }
+
+    const logout = () => {
+        setUser(prevState => ({...prevState, login: false}))
+    }
+
+    const register = (obj) => {
+
+        alert(JSON.stringify(obj))
+    }
+
 
 
 
@@ -101,6 +114,10 @@ export const FeedbackProvider = ({ children }) => {
         feedbacks,
         feedbackEdit,
         isLoading,
+        user,
+        login,
+        logout,
+        register,
         addFeedback,
         deleteFeedback,
         updateFeedback,
