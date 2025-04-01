@@ -11,7 +11,7 @@ function App() {
   return (
       <>
           <Header />
-          <div className="container">
+          <div className="max-w-3xl mx-auto px-5">
               <FeedbackForm />
               <FeedbackStat />
               <FeedbackList />

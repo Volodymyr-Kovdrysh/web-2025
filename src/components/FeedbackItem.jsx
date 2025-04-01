@@ -7,14 +7,22 @@ const FeedbackItem = ({feedback}) => {
     const {deleteFeedback, editFeedback} = useContext(FeedbackContext);
     return (
         <Card>
-            <div className="num-display">{feedback.rating}</div>
-            <button className="close" onClick={() => deleteFeedback(feedback.id)}>
+            {/*<div className="num-display">{feedback.rating}</div>*/}
+            <div className="absolute -top-[10px] -left-[10px] bg-[#ff6a95] w-12 h-12 flex items-center justify-center rounded-full text-lg font-semibold border border-[#fff] text-[#fff]">
+                {feedback.rating}
+            </div>
+
+            <button
+                className="absolute top-[10px] right-[20px] cursor-pointer"
+                onClick={() => deleteFeedback(feedback.id)}
+            >
                 <FaTimes color="purple" />
             </button>
-            <button className="edit" onClick={()=>{editFeedback(feedback)}}>
+
+            <button className="absolute top-[10px] right-[40px] cursor-pointer" onClick={()=>{editFeedback(feedback)}}>
                 <FaEdit color={'purple'} />
             </button>
-            <div className="text-display">{feedback.text}</div>
+            <div className="card-body text-base">{feedback.text}</div>
         </Card>
     );
 };

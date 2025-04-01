@@ -13,8 +13,8 @@ const Header = ({
         color: textColor,
     }
     return (
-        <header style={headerStyle}>
-         <div className="container">
+        <header style={headerStyle} className="h-[70px] w-full flex justify-between items-center mb-8 text-3xl font-bold italic">
+         <div className="max-w-xl mx-auto px-5">
              <h2> {text} </h2>
          </div>
         </header>

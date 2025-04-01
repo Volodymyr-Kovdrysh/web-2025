@@ -65,14 +65,16 @@ const FeedbackForm = () => {
     }
     return (
         <Card>
-            <form onSubmit={handleSubmit}>
-                <h2>Дайте оцінку нашому курсу</h2>
+            <form onSubmit={handleSubmit} >
+                <div className="card-title justify-center text-2xl">Дайте оцінку нашому курсу</div>
                 <RatingSelect select={setRating} />
-                <div className="input-group">
+                <div className="flex flex-row items-center border border-gray-300 px-2.5 py-2 rounded-md">
                     <input
                         onChange={handleTextChange}
                         type={"text"}
                         value={text}
+                        placeholder="Введіть відгук..."
+                        className="flex-grow border-none text-base focus:outline-none bg-transparent"
                     />
                     <Button type={'submit'} isDisable={btnDisabled}>Надіслати</Button>
                 </div>

@@ -6,7 +6,7 @@ const Button = ({children,
                     isDisable=false
 }) => {
     return (
-        <button type={type} disabled={isDisable} className={`btn btn-${version}`}>
+        <button type={type} disabled={isDisable} className={`app-btn app-btn-${version}`}>
             {children}
         </button>
     );
